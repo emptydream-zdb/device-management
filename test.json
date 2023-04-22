@@ -1,1 +1,4 @@
-{"id1": 100, "id2": null}
+{
+    "method": "QUERYALL",
+    "data": null
+}
