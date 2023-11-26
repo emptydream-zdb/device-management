@@ -1,0 +1,7 @@
+sanic
+sanic-ext
+ujson
+requests
+pymysql
+cryptography
+pyjwt

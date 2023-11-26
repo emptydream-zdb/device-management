@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zn-CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>边端设备管理服务</title>
+
+    <script src="./jquery-3.6.0.js"></script>
+    <script src="./index.js"></script>
+
+    <link rel="stylesheet" href="reset.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="basic.css">
+    <link rel="stylesheet" href="json.css">
+
+</head>
+
+<body>
+    <!-- 网页头部 -->
+    <header class="header unselectable">
+        <div class="heading w">边端设备管理服务</div>
+    </header>
+
+    <main class="w">
+
+        <!-- 侧边（左侧）导航条容器 -->
+        <nav class="sidebar-warpper unselectable">
+            <div id="sidebar" class="sidebar">
+                <h1>功能</h1>
+                <ul>
+                    <li><a class="query-all-device" href="javascript:;">查询所有设备</a></li>
+                    <li><a class="query-all-device-and-group" href="javascript:;">查询所有设备及对应分组</a></li>
+                    <li><a class="query-all-group" href="javascript:;">查询所有分组</a></li>
+                    <li><a class="get-device-and-group-by-id" href="javascript:;">按id查询设备及分组</a></li>
+                    <li><a class="get-device-by-group" href="javascript:;">按分组查询设备</a></li>
+                    <li><a class="delete-device-by-id" href="javascript:;">按id删除设备</a></li>
+                    <li><a class="delete-group-by-num" href="javascript:;">按number删除分组</a></li>
+                    <li><a class="delete-relation-by-id" href="javascript:;">按id删除关系</a></li>
+                    <li><a class="register-device" href="javascript:;">注册设备</a></li>
+                    <li><a class="add-group" href="javascript:;">新增分组</a></li>
+                    <li><a class="add-relation" href="javascript:;">新增关系</a></li>
+                    <li><a class="device-login" href="javascript:;">设备登录鉴权</a></li>
+                    <li><a class="database-logging-query" href="javascript:;">数据库日志查询</a></li>
+                    <li><a class="device-logging-query" href="javascript:;">设备操作日志查询</a></li>
+                    <li><a class="status-logging-query" href="javascript:;">状态上报日志查询</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="field" id="register-field">
+            <p>name:<input type="text" id="name" value="west2"></p>
+            <p>type:<input type="text" id="type" value="doll"></p>
+            <p>state:<input type="text" id="state" value="up"></p>
+            <ul>
+                <p>hardware</p>
+                <li>sn:<input type="text" id="hardware-sn" value="100001"></li>
+                <li>model:<input type="text" id="hardware-model" value="100002"></li>
+            </ul>
+            <ul>
+                <p>software</p>
+                <ul>
+                    <p>base</p>
+                    <li>version:<input type="text" id="software-base-version" value="1.0"></li>
+                    <li>lastUpdate:<input type="text" id="software-base-lastUpdate" value="2023-6-15"></li>
+                    <li>status:<input type="text" id="software-base-status" value="up"></li>
+                </ul>
+                <ul>
+                    <p>work</p>
+                    <li>version:<input type="text" id="software-work-version" value="2.0"></li>
+                    <li>lastUpdate:<input type="text" id="software-work-lastUpdate" value="2023-6-15"></li>
+                    <li>status:<input type="text" id="software-work-status" value="up"></li>
+                </ul>
+            </ul>
+            <ul>
+                <p>nic</p>
+                <ul>
+                    <p>eth</p>
+                    <li>mac:<input type="text" id="nic-eth-mac" value="22:22:22:22"></li>
+                    <li>ipv4:<input type="text" id="nic-eth-ipv4" value="2.2.2.2"></li>
+                </ul>
+                <ul>
+                    <p>wifi</p>
+                    <li>mac:<input type="text" id="nic-wifi-mac" value="33:33:33:33"></li>
+                    <li>ipv4:<input type="text" id="nic-wifi-ipv4" value="4.4.4.4"></li>
+                </ul>
+            </ul>
+            <p>LTE_IMEI:<input type="text" id="lte-imei" value="test2"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="add-group-field">
+            <p>group_num:<input type="text" id="group-num" value="2"></p>
+            <p>group_name:<input type="text" id="group-name" value="qingshuihe"></p>
+            <p>description:<input type="text" id="description" value="qingshuihe的大门"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="add-relation-field">
+            <p>group_id:<input type="text" id="add-relation-group-id"></p>
+            <p>group_name:<input type="text" id="add-relation-group-number" value="2"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="device-login-field">
+            <p>id:<input type="text" id="device-login-id"></p>
+            <p>password:<input type="password" id="device-login-pwd"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="get-device-and-group-by-id-field">
+            <p>id:<input type="text" id="get-device-and-group-by-id-device-id"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="delete-device-by-id-field">
+            <p>id:<input type="text" id="delete-device-by-id-device-id"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="delete-relation-by-id-field">
+            <p>id:<input type="text" id="delete-relation-by-id-device-id"></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="delete-group-by-num-field">
+            <p>number:<input type="text" id="delete-group-by-num-group-num2" value=""></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+        <div class="field" id="get-device-by-group-field">
+            <p>number:<input type="text" id="get-device-by-group-group-num2" value=""></p>
+            <button type="button" class="btn">确认</button>
+        </div>
+
+
+        <div class=field id="display-field">
+            <pre id="result">
+
+            </pre>
+        </div>
+    </main>
+
+    <!-- 网页底部 -->
+    <footer class="footer-warpper clearfix unselectable">
+        <div class="footer">
+            <span>2023 &copy; YouthClimb</span>
+        </div>
+    </footer>
+</body>
+
+</html>
